@@ -170,7 +170,7 @@ if(MINGW)
 endif()
 
 add_library(${CDS_STATIC_LIBRARY} STATIC ${SOURCES})
-set_target_properties(${CDS_STATIC_LIBRARY} PROPERTIES DEBUG_POSTFIX "_d")
+set_target_properties(${CDS_STATIC_LIBRARY} PROPERTIES DEBUG_POSTFIX "_d" POSITION_INDEPENDENT_CODE ON)
 if(MINGW)
     target_compile_definitions(${CDS_STATIC_LIBRARY} PRIVATE CDS_BUILD_STATIC_LIB)
 endif()
