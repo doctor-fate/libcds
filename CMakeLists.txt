@@ -165,14 +165,14 @@ set(SOURCES src/init.cpp
 add_library(${CDS_SHARED_LIBRARY} SHARED ${SOURCES})
 set_target_properties(${CDS_SHARED_LIBRARY} PROPERTIES VERSION ${PROJECT_VERSION}
         DEBUG_POSTFIX "_d")
-if(MINGW)
+if(WIN32)
     set_target_properties(${CDS_SHARED_LIBRARY} PROPERTIES DEFINE_SYMBOL CDS_BUILD_LIB)
 endif()
 
 add_library(${CDS_STATIC_LIBRARY} STATIC ${SOURCES})
 set_target_properties(${CDS_STATIC_LIBRARY} PROPERTIES DEBUG_POSTFIX "_d" POSITION_INDEPENDENT_CODE ON)
-if(MINGW)
-    target_compile_definitions(${CDS_STATIC_LIBRARY} PRIVATE CDS_BUILD_STATIC_LIB)
+if(WIN32)
+    target_compile_definitions(${CDS_STATIC_LIBRARY} PUBLIC CDS_BUILD_STATIC_LIB)
 endif()
 
 target_link_libraries(${CDS_SHARED_LIBRARY} PRIVATE ${CMAKE_THREAD_LIBS_INIT})
